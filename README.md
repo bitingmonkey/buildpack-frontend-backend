@@ -1,24 +1,3 @@
-# Customizations
-
- This buildpack require two var: MONGOURI and APP_URL and works on two folder:
-  - frontend (angular application)
-  - backend (which serve the website from static folder)
- Build steps:
- - Build angular frontend
- - replace BASE_URL inside enviroments.ts with APP_URL
- - Gzip CSS HTML and JS
- - Move results in "backend/static".
- - Move backend to / folder, ready for next buildpack.
-
-## Install
-```
-heroku create --remote staging
-heroku config:set MONGOURI="https://[..].com" -r staging
-heroku config:set APP_URL="https://[...herokuapp].com/" -r staging
-heroku buildpacks:set https://github.com/briseide/buildpack-frontend-backend.git -a YOUR_appname
-heroku buildpacks:add heroku/go -a YOUR_appname
-```
-
 # Heroku Buildpack for Node.js
 
 ![nodejs](https://cloud.githubusercontent.com/assets/51578/13712672/efdf2a40-e792-11e5-82ef-492478cbc0dc.png)
