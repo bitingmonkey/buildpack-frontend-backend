@@ -13,9 +13,9 @@
 ## Install
 ```
 heroku create --remote staging
-heroku config:set MONGOURI=https://[..].com -r staging
-heroku config:set APP_URL=https://[...herokuapp].com -r staging
-heroku buildpacks:set https://github.com/lgarbo/heroku-buildpack-nodejs.git -a YOUR_appname
+heroku config:set MONGOURI="https://[..].com" -r staging
+heroku config:set APP_URL="https://[...herokuapp].com/" -r staging
+heroku buildpacks:set https://github.com/briseide/buildpack-frontend-backend.git -a YOUR_appname
 heroku buildpacks:add heroku/go -a YOUR_appname
 ```
 
