@@ -37,6 +37,18 @@ failure_message() {
   echo ""
 }
 
+fail_mandatory_env() {
+  if [[ ! -d "${1:-}" || ! -f "${1:-}/${2}" ]]; then
+    mcount "failures.mandatory-env"
+    meta_set "failure" "mandatory-env"
+    header "Build failed"
+    warn "Missing ${2} var.
+        Go to Settings on the heroku dashboard under Config Vars and add ${2} var.
+    " https://devcenter.heroku.com/articles/config-vars
+    fail
+  fi
+}
+
 fail_invalid_package_json() {
   local is_invalid
 
