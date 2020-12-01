@@ -48,6 +48,24 @@ fail_mandatory_env() {
     fail
   fi
 }
+ 
+fail_env_var_end_with_division_slash() {
+  local env_value
+  if [[ -d "${1:-}" && -f "${1:-}/${2}" ]]; then
+    env_value=$(cat ${1:-}/${2})
+    if [[ ! $env_value =~ /$ ]]; then
+      mcount "failures.string-end-with-slash"
+      meta_set "failure" "string-end-with-slash"
+      header "Build failed"
+      warn "Invalid ${2} env var, must end with /
+      
+        current content:  $env_value
+        expected content: $env_value/
+      " https://devcenter.heroku.com/articles/config-vars
+      fail
+    fi
+  fi
+}
 
 fail_invalid_package_json() {
   local is_invalid

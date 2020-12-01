@@ -117,6 +117,7 @@ fail_iojs_unsupported "$FRONTEND_DIR"
 warn_prebuilt_modules "$FRONTEND_DIR"
 warn_missing_package_json "$FRONTEND_DIR"
 fail_mandatory_env "$ENV_DIR" "APP_URL"
+fail_env_var_end_with_division_slash "$ENV_DIR" "APP_URL"
 fail_mandatory_env "$ENV_DIR" "MONGOURI"
 
 ### Gather more project information
