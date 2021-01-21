@@ -116,9 +116,10 @@ fail_multiple_lockfiles "$FRONTEND_DIR"
 fail_iojs_unsupported "$FRONTEND_DIR"
 warn_prebuilt_modules "$FRONTEND_DIR"
 warn_missing_package_json "$FRONTEND_DIR"
-fail_mandatory_env "$ENV_DIR" "APP_URL"
-fail_env_var_end_with_division_slash "$ENV_DIR" "APP_URL"
+# fail_mandatory_env "$ENV_DIR" "APP_URL"
+# fail_env_var_end_with_division_slash "$ENV_DIR" "APP_URL"
 fail_mandatory_env "$ENV_DIR" "MONGOURI"
+fail_mandatory_env "$ENV_DIR" "S2S_URL"
 
 ### Gather more project information
 
@@ -250,16 +251,16 @@ install_bins() {
 header "Installing binaries" | output "$LOG_FILE"
 install_bins | output "$LOG_FILE"
 
-change_enviroment_base_url() {
-  header "Changing env url of enviroments files"
-  for i in `find $FRONTEND_DIR -type f | grep -E "environment[prod.]+ts$"`
-  do
-    echo "Replacing BASE_URL inside $i with $APP_URL"
-    sed -i "1s#\(.*BASE_URL\).*#\1 = '$APP_URL'#" $i	#in the first line replace BASE_URL with heroku_app_url
-  done
-}
-meta_set "build-step" "update-environment-appurl"
-change_enviroment_base_url | output "$LOG_FILE"
+# change_enviroment_base_url() {
+#   header "Changing env url of enviroments files"
+#   for i in `find $FRONTEND_DIR -type f | grep -E "environment[prod.]+ts$"`
+#   do
+#     echo "Replacing BASE_URL inside $i with $APP_URL"
+#     sed -i "1s#\(.*BASE_URL\).*#\1 = '$APP_URL'#" $i	#in the first line replace BASE_URL with heroku_app_url
+#   done
+# }
+# meta_set "build-step" "update-environment-appurl"
+# change_enviroment_base_url | output "$LOG_FILE"
 
 
 ### Check Frontend Cache
