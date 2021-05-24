@@ -364,7 +364,13 @@ build_dependencies() {
   meta_set "build-step" "build-script"
   header "Build Angular"
   mkdir -p $BACKEND_STATIC_DIR
-  npm run build -- --prod=true --outputPath=$BACKEND_STATIC_DIR
+  if [[ -n $NODE_BUILD_FLAGS ]]; then
+    echo "Running: npm run build -- --prod=true --outputPath=$BACKEND_STATIC_DIR $NODE_BUILD_FLAGS"
+    npm run build -- --prod=true --outputPath=$BACKEND_STATIC_DIR "$NODE_BUILD_FLAGS"
+  else
+    echo "Running: npm run build -- --prod=true --outputPath=$BACKEND_STATIC_DIR"
+    npm run build -- --prod=true --outputPath=$BACKEND_STATIC_DIR
+  fi
 }
 
 meta_set "build-step" "install-dependencies"
