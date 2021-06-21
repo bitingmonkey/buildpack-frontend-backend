@@ -14,6 +14,6 @@ mv_dir_content_to_root() {
   from_dir="$1"
   tmp_dir=`mktemp -d $CACHE_DIR/subdirXXXXX`
   cp -R "$from_dir/." $tmp_dir
-  cp -R "$tmp_dir/." $BUILD_DIR
+  cp -Rn "$tmp_dir/." $BUILD_DIR
   rm -rf $tmp_dir
 }
