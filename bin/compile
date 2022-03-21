@@ -17,6 +17,7 @@ BPLOG_PREFIX="buildpack.nodejs"
 ### Configure directories
 BUILD_DIR=${1:-}
 FRONTEND_DIR="${BUILD_DIR}/frontend"
+PAYWALL_DIR="${BUILD_DIR}/paywall-engine"
 BACKEND_DIR="${BUILD_DIR}/backend"
 BACKEND_STATIC_DIR="${BACKEND_DIR}/static"
 CACHE_DIR=${2:-}
@@ -272,8 +273,9 @@ folder_sha() {
   echo $folderhash
 } 
 header "Check frontend cache"
-FRONTEND_DIR_SHA=$(folder_sha "$FRONTEND_DIR") 
-CACHE_FRONTEND_DIR="$CACHE_DIR/frontend/$FRONTEND_DIR_SHA"
+FRONTEND_DIR_SHA=$(folder_sha "$FRONTEND_DIR")
+PAYWALL_DIR_SHA=$(folder_sha "$PAYWALL_DIR")
+CACHE_FRONTEND_DIR="$CACHE_DIR/frontend/$FRONTEND_DIR_SHA$PAYWALL_DIR_SHA"
 echo "       Frontend sha: $FRONTEND_DIR_SHA"
 if [ -d "$CACHE_FRONTEND_DIR" ]; then
   echo "       Frontend cache found, restore..."
