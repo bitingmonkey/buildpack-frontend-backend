@@ -381,16 +381,16 @@ run_prebuild_script "$FRONTEND_DIR" | output "$LOG_FILE"
 header "Installing dependencies" | output "$LOG_FILE"
 build_dependencies | output "$LOG_FILE"
 
-zipping() {
-  for i in `find $BACKEND_STATIC_DIR -type f | grep -E "\.css$|\.js$|\.html$"` 
-  do
-    gzip "$i" 
-    mv "$i.gz" "$i" #remove gz extension
-  done
-}
-meta_set "build-step" "zipping"
-header "Zip Angular JS CSS HTML" | output "$LOG_FILE"
-zipping | output "$LOG_FILE"
+# zipping() {
+#   for i in `find $BACKEND_STATIC_DIR -type f | grep -E "\.css$|\.js$|\.html$"` 
+#   do
+#     gzip "$i" 
+#     mv "$i.gz" "$i" #remove gz extension
+#   done
+# }
+# meta_set "build-step" "zipping"
+# header "Zip Angular JS CSS HTML" | output "$LOG_FILE"
+# zipping | output "$LOG_FILE"
 
 cache_build() {
   local cache_directories cache_build_start_time
