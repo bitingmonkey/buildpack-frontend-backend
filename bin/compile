@@ -366,11 +366,11 @@ build_dependencies() {
   header "Build Angular"
   mkdir -p $BACKEND_STATIC_DIR
   if [[ -n $NODE_BUILD_FLAGS ]]; then
-    echo "Running: npm run build -- --outputPath=$BACKEND_STATIC_DIR $NODE_BUILD_FLAGS"
-    npm run build -- --outputPath=$BACKEND_STATIC_DIR "$NODE_BUILD_FLAGS"
+    echo "Running: npm run build -- --output-path=$BACKEND_STATIC_DIR $NODE_BUILD_FLAGS"
+    npm run build -- --output-path=$BACKEND_STATIC_DIR "$NODE_BUILD_FLAGS"
   else
-    echo "Running: npm run build -- --outputPath=$BACKEND_STATIC_DIR"
-    npm run build -- --outputPath=$BACKEND_STATIC_DIR
+    echo "Running: npm run build -- --output-path=$BACKEND_STATIC_DIR"
+    npm run build -- --output-path=$BACKEND_STATIC_DIR
   fi
 }
 
